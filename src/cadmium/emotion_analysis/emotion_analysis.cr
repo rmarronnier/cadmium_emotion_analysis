@@ -34,6 +34,7 @@ module Cadmium
     end
 
     class Intensity
+      include JSON::Serializable
       include Tokenizer
       # include StopWords TODO : rework the whole language symbol / string structure and rework the stopwords macro
       property data : AllLanguagesModel
