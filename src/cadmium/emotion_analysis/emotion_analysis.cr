@@ -68,7 +68,7 @@ module Cadmium
         raw_result.transform_values! do |score|
           score / normalizer
         end
-        result = raw_result.to_a.sort_by { |key, _| key }.to_h.transform_keys { |emotion| emotion.to_s }
+        result = raw_result.to_a.sort_by { |key, _| key }.to_h.transform_keys { |emotion| emotion.to_s.downcase }
         result
       end
     end
