@@ -49,7 +49,7 @@ module Cadmium
         # end
       end
 
-      def analyse(text : String, language = "en") : Hash(Emotion, Float32)
+      def analyse(text : String, language = "en") : Hash(String, Float32)
         # TODO take care of languages !
         bag_of_words = Cadmium::Tokenizer::Aggressive.new.tokenize(text)
         raw_result = Hash(Emotion, Float32).new
@@ -68,7 +68,7 @@ module Cadmium
         raw_result.transform_values! do |score|
           score / normalizer
         end
-        reuslt = raw_result.to_a.sort_by { |key, _| key }.to_h.transform_keys { |emotion| emotion.to_s }
+        result = raw_result.to_a.sort_by { |key, _| key }.to_h.transform_keys { |emotion| emotion.to_s }
         result
       end
     end
