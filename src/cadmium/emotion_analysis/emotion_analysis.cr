@@ -52,11 +52,12 @@ module Cadmium
       def analyse(text : String, language = "en") : Hash(String, Float32)
         # TODO take care of languages !
         bag_of_words = Cadmium::Tokenizer::Aggressive.new.tokenize(text)
+        return {"none" => 0.to_f32} if bag_of_words.size < 2
         raw_result = Hash(Emotion, Float32).new
         Emotion.values.each do |emotion|
           raw_result[emotion] = 0.to_f32
         end
-        normalizer = 0
+        normalizer = 1
         bag_of_words.each do |word|
           if emotion = @data.language_word_emotion_score_hash[language].has_key?(word)
             normalizer += 1

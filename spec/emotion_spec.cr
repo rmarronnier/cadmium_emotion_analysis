@@ -24,4 +24,7 @@ describe Cadmium::EmotionAnalysis do
   it "should detect angry3" do
     subject.analyse(ANGRR).should eq(true)
   end
+  it "should return none if gibberish entry" do
+    subject.analyse("fsdfgsqgsdheù*merg").should eq(true)
+  end
 end
